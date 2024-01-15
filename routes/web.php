@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**start Author Route */
+Route::resource('Author', AuthorsController::class);
+
+/**end Author Route */
+
+/**start category Route */
+Route::resource('category', CategoryController::class);
+
+/**end category Route */
+

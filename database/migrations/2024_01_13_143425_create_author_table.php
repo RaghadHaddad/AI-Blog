@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('author_image');
             $table->text('country');
             $table->text('permission');
+            $table->timestamps();
+
         });
 
         Schema::enableForeignKeyConstraints();
