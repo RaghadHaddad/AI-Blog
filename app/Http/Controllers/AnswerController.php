@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $Categories=Category::all();
-        return view('category.all_category',compact('Categories'));
+        $Answers=Answer::all();
+        return view('contact.Answer',compact('Answers'));
     }
 
     /**
@@ -36,22 +36,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-            'name' => $request->name,
-            'section' => $request->section,
+        Answer::create([
+            'ask' => $request->ask,
+            'answer' => $request->answer,
 
         ]);
-        session()->flash('Add', 'add category successfully');
-        return redirect('/category');
+        session()->flash('Add', 'add Answer successfully');
+        return redirect('/answer');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Answer $answer)
     {
         //
     }
@@ -59,35 +59,35 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $Categories=Category::find($id);
-
-        return view('category.edit',compact('Categories'));
+        $Answers=Answer::find($id);
+        return view('contact.edit_answer',compact('Answers'));
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
-        $Categories=Category::find($id);
+        $Answers=Answer::find($id);
 
         $request->validate([
-            'name'    => 'required',
-            'section'   => 'required'
+            'ask'    => 'required',
+            'answer'   => 'required'
         ]);
 
-        $Categories->update($request->all());
+        $Answers->update($request->all());
 
-        return redirect('/category');
+        return redirect('/answer');
     }
     /**
      * Remove the specified resource from storage.
@@ -97,8 +97,8 @@ class CategoryController extends Controller
      */
     public function destroy( $id)
     {
-        $Categories=Category::find($id);
-        $Categories->delete();
-        return redirect('/category');
+        $Answers=Answer::find($id);
+        $Answers->delete();
+        return redirect('/answer');
     }
 }

@@ -8,30 +8,28 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('opinions', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
-            $table->integer('phone');
             $table->longText('message');
-            $table->boolean('agree');
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('contact');
+        Schema::dropIfExists('opinions');
     }
 };

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Opinion;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class OpinionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $Categories=Category::all();
-        return view('category.all_category',compact('Categories'));
+        $opinions=Opinion::all();
+        return view('contact.opinion',compact('opinions'));
     }
 
     /**
@@ -36,22 +36,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-            'name' => $request->name,
-            'section' => $request->section,
-
-        ]);
-        session()->flash('Add', 'add category successfully');
-        return redirect('/category');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Opinion  $opinion
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Opinion $opinion)
     {
         //
     }
@@ -59,46 +53,36 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Opinion  $opinion
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Opinion $opinion)
     {
-        $Categories=Category::find($id);
-
-        return view('category.edit',compact('Categories'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Opinion  $opinion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, Opinion $opinion)
     {
-        $Categories=Category::find($id);
-
-        $request->validate([
-            'name'    => 'required',
-            'section'   => 'required'
-        ]);
-
-        $Categories->update($request->all());
-
-        return redirect('/category');
+        //
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Opinion  $opinion
      * @return \Illuminate\Http\Response
      */
     public function destroy( $id)
     {
-        $Categories=Category::find($id);
-        $Categories->delete();
-        return redirect('/category');
+        $opinoins=Opinion::find($id);
+        $opinoins->delete();
+        return redirect('/Opinion');
     }
 }

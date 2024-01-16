@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\contacts;
+use App\Models\Opinion;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ContactsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $Categories=Category::all();
-        return view('category.all_category',compact('Categories'));
+        $contact=contacts::all();
+        return view('contact.message',compact('contact'));
     }
 
     /**
@@ -36,22 +37,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-            'name' => $request->name,
-            'section' => $request->section,
-
-        ]);
-        session()->flash('Add', 'add category successfully');
-        return redirect('/category');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(contacts $contacts)
     {
         //
     }
@@ -59,46 +54,52 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id)
     {
-        $Categories=Category::find($id);
+        /**To move from the messages table to the opinions table */
+        $contact=contacts::find($id);
+        Opinion::create([
+            'first_name' => $contact->first_name,
+            'last_name' => $contact->last_name,
+            'email' => $contact->email,
+            'message' => $contact->message,
+        ]);
+        $contact->delete();
+        return redirect()->route('Opinion.index');
 
-        return view('category.edit',compact('Categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, contacts $contacts)
     {
-        $Categories=Category::find($id);
-
-        $request->validate([
-            'name'    => 'required',
-            'section'   => 'required'
-        ]);
-
-        $Categories->update($request->all());
-
-        return redirect('/category');
+        //
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\contacts  $contacts
      * @return \Illuminate\Http\Response
      */
     public function destroy( $id)
     {
-        $Categories=Category::find($id);
-        $Categories->delete();
-        return redirect('/category');
+        $contact=contacts::find($id);
+
+        $contact->delete();
+        return redirect()->route('Message.index');
+    }
+
+    public function Add_to_Opinoin( $id)
+    {
+
     }
 }
