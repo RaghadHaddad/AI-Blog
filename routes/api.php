@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\CategoryController;
@@ -24,7 +24,7 @@ use App\Http\Controllers\CategoryController;
 // });
 
 /**contact Api */
-Route::post('Contact', [ContactController::class ,'store']);
+Route::post('Contact', [ContactsController::class ,'store']);
 
 /**Answer Api */
 Route::get('Answer',[AnswerController::class,'index_id']);
