@@ -18,6 +18,12 @@ class OpinionController extends Controller
         return view('contact.opinion',compact('opinions'));
     }
 
+    /**index for api */
+    public function index_api(){
+        $Opinion=Opinion::all();
+        return response( $Opinion);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

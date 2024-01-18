@@ -18,6 +18,12 @@ class CategoryController extends Controller
         return view('category.all_category',compact('Categories'));
     }
 
+    /**index for api */
+    public function index_api(){
+        $Categories=Category::get();
+        return response( $Categories);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -100,5 +106,37 @@ class CategoryController extends Controller
         $Categories=Category::find($id);
         $Categories->delete();
         return redirect('/category');
+    }
+
+
+
+    /**api */
+    public function show_Category_news(){
+        $Categories=Category::where('section', 'news')->get();
+        return response( $Categories);
+    }
+
+
+    public function show_Category_home(){
+        $Categories=Category::where('section', 'home')->get();
+        return response( $Categories);
+    }
+
+
+    public function show_Category_blog(){
+        $Categories=Category::where('section', 'blogs')->get();
+        return response( $Categories);
+    }
+
+
+    public function show_Category_resource(){
+        $Categories=Category::where('section', 'resource')->get();
+        return response( $Categories ,);
+    }
+
+
+    public function show_Category_podcast(){
+        $Categories=Category::where('section', 'podcasts')->get();
+        return response( $Categories);
     }
 }

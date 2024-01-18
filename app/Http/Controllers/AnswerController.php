@@ -18,6 +18,13 @@ class AnswerController extends Controller
         return view('contact.Answer',compact('Answers'));
     }
 
+    /**index for ip */
+    public function index_id()
+    {
+        $Answers=Answer::get();
+        return response( $Answers );
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,6 +58,7 @@ class AnswerController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
+
     public function show(Answer $answer)
     {
         //

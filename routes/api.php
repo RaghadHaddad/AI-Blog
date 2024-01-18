@@ -2,10 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\api\ContactController;
-use App\Http\Controllers\api\AnswerController;
-use App\Http\Controllers\api\OpinionController;
-use App\Http\Controllers\api\CategoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\OpinionController;
+use App\Http\Controllers\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,15 +27,13 @@ use App\Http\Controllers\api\CategoryController;
 Route::post('Contact', [ContactController::class ,'store']);
 
 /**Answer Api */
-Route::get('Answer',[AnswerController::class,'index']);
-Route::get('Answer/{id}',[AnswerController::class,'show']);
+Route::get('Answer',[AnswerController::class,'index_id']);
 
 /**opinon Api */
-Route::get('Opinion',[OpinionController::class, 'index']);
-Route::get('Opinion/{id}',[OpinionController::class, 'show']);
+Route::get('Opinion',[OpinionController::class, 'index_api']);
 
 /**category Api */
-Route::get('Category',[CategoryController::class, 'index']);
+Route::get('Category',[CategoryController::class, 'index_api']);
 Route::get('Category/news',[CategoryController::class, 'show_Category_news']);
 Route::get('Category/home',[CategoryController::class, 'show_Category_home']);
 Route::get('Category/blog',[CategoryController::class, 'show_Category_blog']);
