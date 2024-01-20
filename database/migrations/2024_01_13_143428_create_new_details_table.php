@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('publicate_date');
             $table->text('image');
             $table->integer('reading_time');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('author_id')->references('id')->on('authors')->onDelete("cascade");
             $table->text('title');
             $table->longText('description');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

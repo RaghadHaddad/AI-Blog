@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('author_id')->references('id')->on('authors');
             $table->text('title');
             $table->enum('rate', ['0', '1', '2', '3', '4', '5'])->default('0');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

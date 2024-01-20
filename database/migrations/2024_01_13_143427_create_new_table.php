@@ -23,6 +23,7 @@ return new class extends Migration
             $table->bigInteger('like');
             $table->bigInteger('comment');
             $table->bigInteger('share');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
