@@ -211,7 +211,7 @@
 
           <li class="nav-header">contact</li>
             <li class="nav-item">
-                <a href="{{ url('/' . $page='About_Minister') }}" class="nav-link">
+                <a href="{{ url('/' . $page='Message') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                     message
@@ -219,7 +219,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('/' . $page='Minister_Laws') }}" class="nav-link">
+                <a href="{{ url('/' . $page='answer') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                     Asked
@@ -227,7 +227,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('/' . $page='Related_Site') }}" class="nav-link">
+                <a href="{{ url('/' . $page='Opinion') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                     opinion
@@ -237,7 +237,7 @@
 
           <li class="nav-header">setteing</li>
             <li class="nav-item">
-                <a href="{{ url('/' . $page='About_Minister') }}" class="nav-link">
+                <a href="{{ url('/' . $page='Admin') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                     admin

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('ask');
             $table->text('answer');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
