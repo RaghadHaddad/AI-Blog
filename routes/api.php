@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ResourceController;
-use App\Http\Controllers\ResourceDetailController;
+use App\Http\Controllers\API\ResourceController;
+use App\Http\Controllers\API\ResourceDetailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
