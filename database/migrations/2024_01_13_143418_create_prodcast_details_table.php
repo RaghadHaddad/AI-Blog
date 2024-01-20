@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('total_episodes');
             $table->text('average_length');
             $table->text('release_frequency');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

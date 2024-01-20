@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('linkeden');
             $table->text('twitter');
             $table->text('instagram');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

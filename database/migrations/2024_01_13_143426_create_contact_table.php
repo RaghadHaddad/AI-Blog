@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText('message');
             $table->boolean('agree');
             $table->bigInteger('post_id')->index();
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

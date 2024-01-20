@@ -18,7 +18,9 @@ return new class extends Migration
             $table->text('title');
             $table->unsignedBigInteger('news_id');
             $table->foreign('news_id')->references('id')->on('news_details')->onDelete("cascade");
+            $table->timestamps();
         });
+
 
         Schema::enableForeignKeyConstraints();
     }
