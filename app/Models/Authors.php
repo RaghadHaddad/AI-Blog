@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Authors extends Model
 {
     use HasFactory;
+    protected $table = 'authors';
     protected $fillable = [
         'author_name',
         'author_image',
         'country',
         'permission'
     ];
+
+    public function podcasts()
+    {
+        return $this->hasMany(Podcast::class);
+    }
 }
