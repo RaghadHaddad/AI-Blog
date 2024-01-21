@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Opinion;
+use App\Models\likes;
 use Illuminate\Http\Request;
 
-class OpinionController extends Controller
+class LikesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +14,7 @@ class OpinionController extends Controller
      */
     public function index()
     {
-        $opinions=Opinion::all();
-        return view('contact.opinion',compact('opinions'));
-    }
-
-    /**index for api */
-    public function index_api(){
-        $Opinion=Opinion::all();
-        return response( $Opinion);
+        //
     }
 
     /**
@@ -42,16 +35,18 @@ class OpinionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $likes=likes::create($request->all());
+        return response($likes);
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Opinion  $opinion
+     * @param  \App\Models\likes  $likes
      * @return \Illuminate\Http\Response
      */
-    public function show(Opinion $opinion)
+    public function show(likes $likes)
     {
         //
     }
@@ -59,10 +54,10 @@ class OpinionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Opinion  $opinion
+     * @param  \App\Models\likes  $likes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Opinion $opinion)
+    public function edit(likes $likes)
     {
         //
     }
@@ -71,10 +66,10 @@ class OpinionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Opinion  $opinion
+     * @param  \App\Models\likes  $likes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Opinion $opinion)
+    public function update(Request $request, likes $likes)
     {
         //
     }
@@ -82,13 +77,11 @@ class OpinionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Opinion  $opinion
+     * @param  \App\Models\likes  $likes
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy(likes $likes)
     {
-        $opinoins=Opinion::find($id);
-        $opinoins->delete();
-        return redirect('/Opinion');
+        //
     }
 }

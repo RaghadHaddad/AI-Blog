@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Authors;
+use App\Http\Traits\UploadPhotoTrait;
+
 use Illuminate\Http\Request;
 
 class AuthorsController extends Controller
 {
+    use UploadPhotoTrait;
     /**
      * Display a listing of the resource.
      *
@@ -39,17 +42,19 @@ class AuthorsController extends Controller
         /***للتأكد من التسجيل مسبقاً */
         $input_exsit = Authors::where('author_name','=', $input_author['author_name'])->exists();
 
+        $destination = 'images/authors';
+        $imagePath = $this->UploadPhoto($request , $destination , 'image');
         if( $input_exsit){
             session()->flash('Error', ' The name is already registered');
             return redirect('/Author');
         }
         else{
-            Authors::create([
+            $Authour=Authors::create([
                 'author_name' => $request->author_name,
-                'author_image' => $request->author_image,
+                'author_image' => $imagePath,
                 'country'  => $request->country,
-                'permission'  => 'author'
             ]);
+        $Authour->save();
             session()->flash('Add', 'Name added successfully
             ');
             return redirect('/Author');

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Answer;
+use App\Models\News_content;
+use App\Models\News;
 use Illuminate\Http\Request;
 
-class AnswerController extends Controller
+class NewsContentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,15 +15,9 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        $Answers=Answer::all();
-        return view('contact.Answer',compact('Answers'));
-    }
-
-    /**index for ip */
-    public function index_api()
-    {
-        $Answers=Answer::get();
-        return response( $Answers );
+        $new=News::all();
+        $contents=News_content::all();
+        return view('news.news_content' ,compact('contents','new'));
     }
 
     /**
@@ -43,23 +38,24 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        Answer::create([
-            'ask' => $request->ask,
-            'answer' => $request->answer,
+        News_content::create([
+            'news_id' => $request->news_id,
+            'title' => $request->title,
+            'description' => $request->description,
 
         ]);
-        session()->flash('Add', 'add Answer successfully');
-        return redirect('/answer');
+        session()->flash('Add', 'add content successfully');
+        return redirect('/news_content');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\News_content  $news_content
      * @return \Illuminate\Http\Response
      */
-
-    public function show(Answer $answer)
+    public function show(News_content $news_content)
     {
         //
     }
@@ -67,46 +63,48 @@ class AnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\News_content  $news_content
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $Answers=Answer::find($id);
-        return view('contact.edit_answer',compact('Answers'));
+        $contents=News_content::find($id);
+        $new=News::all();
+        return view('news.edit_content',compact('new','contents'));
     }
-
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
-        $Answers=Answer::find($id);
+        $contents=News_content::find($id);
 
         $request->validate([
-            'ask'    => 'required',
-            'answer'   => 'required'
+            'news_id'      => 'required',
+            'title'        => 'required',
+            'description' => 'required'
         ]);
 
-        $Answers->update($request->all());
+        $contents->update($request->all());
 
-        return redirect('/answer');
+        return redirect('/news_content');
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\News_content  $news_content
      * @return \Illuminate\Http\Response
      */
     public function destroy( $id)
     {
-        $Answers=Answer::find($id);
-        $Answers->delete();
-        return redirect('/answer');
+        $contents=News_content::find($id);
+        $contents->delete();
+        return redirect('/news_content');
     }
 }

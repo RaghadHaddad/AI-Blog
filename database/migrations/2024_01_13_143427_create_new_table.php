@@ -20,9 +20,12 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id')->index();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete("cascade");
             $table->text('title');
-            $table->bigInteger('like');
-            $table->bigInteger('comment');
-            $table->bigInteger('share');
+            $table->string('image');
+            $table->string('section');
+            $table->mediumText('overview');
+            $table->date('publicate_date');
+            $table->integer('reading_time');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

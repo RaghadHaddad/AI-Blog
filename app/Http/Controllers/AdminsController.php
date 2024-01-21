@@ -18,6 +18,11 @@ class AdminsController extends Controller
         return view('contact.Admin',compact('Admins'));
     }
 
+    /**index for api */
+    public function index_api(){
+        $Admins=Admins::all();
+        return response( $Admins);
+    }
     /**
      * Show the form for creating a new resource.
      *

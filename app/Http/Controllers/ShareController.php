@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Opinion;
+use App\Models\share;
 use Illuminate\Http\Request;
 
-class OpinionController extends Controller
+class ShareController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +14,7 @@ class OpinionController extends Controller
      */
     public function index()
     {
-        $opinions=Opinion::all();
-        return view('contact.opinion',compact('opinions'));
-    }
-
-    /**index for api */
-    public function index_api(){
-        $Opinion=Opinion::all();
-        return response( $Opinion);
+        //
     }
 
     /**
@@ -42,16 +35,16 @@ class OpinionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $share=share::create($request->all());
+        return response($share);
     }
-
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Opinion  $opinion
+     * @param  \App\Models\share  $share
      * @return \Illuminate\Http\Response
      */
-    public function show(Opinion $opinion)
+    public function show(share $share)
     {
         //
     }
@@ -59,10 +52,10 @@ class OpinionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Opinion  $opinion
+     * @param  \App\Models\share  $share
      * @return \Illuminate\Http\Response
      */
-    public function edit(Opinion $opinion)
+    public function edit(share $share)
     {
         //
     }
@@ -71,10 +64,10 @@ class OpinionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Opinion  $opinion
+     * @param  \App\Models\share  $share
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Opinion $opinion)
+    public function update(Request $request, share $share)
     {
         //
     }
@@ -82,13 +75,11 @@ class OpinionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Opinion  $opinion
+     * @param  \App\Models\share  $share
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy(share $share)
     {
-        $opinoins=Opinion::find($id);
-        $opinoins->delete();
-        return redirect('/Opinion');
+        //
     }
 }

@@ -35,9 +35,12 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    /**api */
     public function store(Request $request)
     {
-        //
+        $contact=contacts::create($request->all());
+        return response($contact);
     }
 
     /**

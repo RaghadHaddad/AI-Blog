@@ -80,7 +80,7 @@ All Category
                                                     <h6 class="modal-title"> new Category  </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="" method="post">
+                                                    <form action="{{route('category.store')}}"  method="post">
                                                         @csrf
                                                         <div class="form_group">
                                                             <label for=""> name</label>
