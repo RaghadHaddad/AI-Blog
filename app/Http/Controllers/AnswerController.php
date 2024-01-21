@@ -20,6 +20,7 @@ class AnswerController extends Controller
 
     /**index for ip */
     public function index_api()
+
     {
         $Answers=Answer::get();
         return response( $Answers );

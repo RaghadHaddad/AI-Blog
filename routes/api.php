@@ -15,6 +15,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ViewController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,6 +43,10 @@ Route::get('Opinion',[OpinionController::class, 'index_api']);
 /**admin Api */
 Route::get('admin',[AdminsController::class, 'index_api']);
 
+Route::get('Answer',[AnswerController::class,'index_id']);
+
+/**opinon Api */
+Route::get('Opinion',[OpinionController::class, 'index_api']);
 
 /**category Api */
 Route::get('Category',[CategoryController::class, 'index_api']);
