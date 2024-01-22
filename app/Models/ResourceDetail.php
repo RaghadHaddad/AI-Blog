@@ -22,7 +22,7 @@ class ResourceDetail extends Model
 
     public function resource()
     {
-        return $this->hasOne(Resource::class,'resource_id');
+        return $this->belongsTo(Resource::class,'resource_id');
     }
 
 }
