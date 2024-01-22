@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\ResourceController;
-use App\Http\Controllers\ResourceDetailController;
+use App\Http\Controllers\API\ResourceController;
+use App\Http\Controllers\API\ResourceDetailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\OpinionController;
-use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +54,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get('/filter/{section}',[ResourceController::class,'filter']);
     //Route for card display
     Route::get('/CardData',[ResourceController::class,'CardData']);
+    //download pdf
+    Route::get('/download',[PdfController::class,'viewPdf']);
 
 /**contact Api */
 Route::post('Contact', [ContactsController::class ,'store']);

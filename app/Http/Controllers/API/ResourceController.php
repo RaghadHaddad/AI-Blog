@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ResourceRequest;
 use App\Http\Resources\ResourcesResource;
 use App\Http\Traits\ApiResponseTrait;
-use App\Models\Authors;
-use App\Models\Category;
-use App\Models\Resource;
-use App\Models\ResourceDetail;
+use App\Models\{ResourceDetail,Resource,Category,Authors,contacts};
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -66,9 +64,9 @@ class ResourceController extends Controller
     {
         $resource=Resource::count();
         $total_downloads = ResourceDetail::sum('total_download');
-        // $sum=Authors::count()+Concat::count();
-        // $countries=Contact::get('city')->distinct()->count();
-        return $this->customResponse([$resource,$total_downloads],'ok',200);
+        $sum=Authors::count()+contacts::count();
+        $countries = Authors::distinct('country')->count();
+        return $this->customResponse([$resource,$total_downloads,$sum,$countries],'ok',200);
     }
     public function filter($section)
     {
@@ -87,63 +85,30 @@ class ResourceController extends Controller
             "section" => $result->category->section,
             "description" => $result->description,
             "title" => $result->title,
-            // "job" => $result->resourceDetail->job,
-            // "image" => $result->resourceDetail->image,
-            // "publication_date" => $result->resourceDetail->publication_date,
+            "job" => $result->resourceDetail->job,
+            "image" => $result->resourceDetail->image,
+            "publication_date" => $result->resourceDetail->publication_date,
             "author_name" => $result->author->author_name,
         ];
     });
     return $this->customResponse($results, 'Results found', 200);
     }
-    // public function filter($section)
-    // {
-    //     $query=new Resource();
-    //      $table_sections=Category::get('section');
-    //      foreach($table_sections as $table_section)
-    //      {
-    //         if($table_section == $section)
-    //         {
-    //              $query=Resource::with('resourceDetail','category','author')->get();
-    //         }
-    //      }
-    //      if ($query->isEmpty()) {
-    //         return $this->customResponse(null, 'No results found', 404);
-    //     }
-
-    //     $results = $query->map(function ($result) {
-    //         return [
-    //             "name" => $result->category->name,
-    //             "section" => $result->category->section,
-    //             "description"=>$result->description,
-    //             "title"=>$result->title,
-    //             "job" => $result->resourceDetail->job,
-    //             "image" => $result->resourceDetail->image,
-    //             "publication_date" => $result->resourceDetail->publication_date,
-    //             "author_name" => $result->author->author_name,
-                //(category)في مربع ل
-                // ("name" => $result->category->name,)هاد تم الحصول عليه بأول سطر
-    //         ];
-    //     });
-    //     return $this->customResponse($results, 'Results found', 200);
-    // }
     public function CardData()
     {
-        $result[]=[];
-        $contents=Resource::with('resourceDetail','category')->get();
-        // $contents = Resource::with(['resourceDetail' => function ($query) {
-        //     $query->whereNotNull('id');
-        // }])->get();
-        dd($contents);
-        foreach($contents as $content)
-        {
-          $result=[
-          "name"=>$content->category->name,
-          "section"=>$content->category->section,
-          "description"=>$content->description,
-          "image"=>$content->resourceDetail->image
-          ];
-        }
-        return $this->customResponse($result, 'Results found', 200);
+        $query = Resource::with('resourceDetail', 'category')->get();
+
+        $results = $query->map(function ($result) {
+            $image = $result->resourceDetail ? $result->resourceDetail->image : null;
+
+            return [
+                "name" => $result->category->name,
+                "section" => $result->category->section,
+                "title" => $result->title,
+                "description" => $result->description,
+                "image" => $image,
+            ];
+        });
+        return $this->customResponse($results, 'Results found', 200);
     }
 
 }

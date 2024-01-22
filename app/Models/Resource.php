@@ -24,7 +24,7 @@ class Resource extends Model
 
     public function resourceDetail()
     {
-        return $this->belongsTo(ResourceDetail::class,'resource_id');
+        return $this->hasOne(ResourceDetail::class,'resource_id');
     }
     public function category()
     {
