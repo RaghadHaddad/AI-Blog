@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\HomeController;
 use App\Http\Controllers\API\PdfController;
 
 /*
@@ -22,9 +23,9 @@ use App\Http\Controllers\API\PdfController;
 */
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
-});
+// });
     //crud for resource
     //All Resources
     Route::get('/all/resources',[ResourceController::class,'index']);
@@ -56,6 +57,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get('/CardData',[ResourceController::class,'CardData']);
     //download pdf
     Route::get('/download',[PdfController::class,'viewPdf']);
+    //display resource for home page
+    Route::get('/display',[HomeController::class,'index']);
 
 /**contact Api */
 Route::post('Contact', [ContactsController::class ,'store']);
