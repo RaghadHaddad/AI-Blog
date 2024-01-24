@@ -96,7 +96,6 @@ class ResourceController extends Controller
     public function CardData()
     {
         $query = Resource::with('resourceDetail', 'category')->get();
-
         $results = $query->map(function ($result) {
             $image = $result->resourceDetail ? $result->resourceDetail->image : null;
 
