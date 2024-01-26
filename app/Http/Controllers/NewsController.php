@@ -20,7 +20,7 @@ class NewsController extends Controller
     public function index()
     {
         $authors=Authors::all();
-        $categories=Category::where('section', 'news')->get();;
+        $categories = Category::whereIn('section', ['news', 'blogs'])->get();
         $new=News::all();
         return view('news.all_news',compact('new','authors','categories'));
     }
@@ -112,7 +112,10 @@ class NewsController extends Controller
 
      /**index for api */
      public function index_api(){
-        $newsItems = News::with('contentnews' ,'view_news' ,'share_news' , 'comment_news', 'like_news')->get();
+        $newsItems = News::with('contentnews' ,'view_news' ,'share_news' , 'comment_news', 'like_news')
+                 ->whereHas('category', function ($query) {
+                     $query->where('section', 'news');
+                 })->get();
         $news_responses = [];
         foreach ($newsItems as $news) {
             $news_response=[
@@ -150,11 +153,13 @@ class NewsController extends Controller
             ];
             $news_responses[] = $news_response;
         }
-        return response()( $news_responses);
+        return response( $news_responses);
     }
 
     public function show_post(){
-        $newsItems = News::where('section', 'posts')->with('contentnews')->get();
+        $newsItems = News::where('section', 'posts')
+        ->with('contentnews' ,'view_news' ,'share_news' , 'comment_news', 'like_news')
+        ->get();
         $news_responses = [];
         foreach ($newsItems as $news) {
             $news_response=[
@@ -167,6 +172,10 @@ class NewsController extends Controller
                 'reading_time'   =>$news->reading_time,
                 'publicate_date' =>$news->publicate_date,
                 'contents'     => $news->contentnews,
+                'totla_like'   =>$news->like_news->where('news_id', $news->id)->count(),
+                'totla_view'   =>$news->view_news->where('news_id', $news->id)->count(),
+                'totla_share'   =>$news->share_news->where('news_id', $news->id)->count(),
+                'totla_comment'   =>$news->comment_news->where('news_id', $news->id)->count(),
             ];
             $news_responses[] = $news_response;
         }
@@ -174,7 +183,9 @@ class NewsController extends Controller
     }
 
     public function show_Main_news(){
-        $newsItems = News::where('section', 'Main_news')->with('contentnews')->get();
+        $newsItems = News::where('section', 'Main_news')
+        ->with('contentnews' ,'view_news' ,'share_news' , 'comment_news', 'like_news')
+        ->get();
         $news_responses = [];
         foreach ($newsItems as $news) {
             $news_response=[
@@ -186,6 +197,10 @@ class NewsController extends Controller
                 'reading_time'   =>$news->reading_time,
                 'publicate_date' =>$news->publicate_date,
                 'contents'       =>$news->contentnews,
+                'totla_like'   =>$news->like_news->where('news_id', $news->id)->count(),
+                'totla_view'   =>$news->view_news->where('news_id', $news->id)->count(),
+                'totla_share'   =>$news->share_news->where('news_id', $news->id)->count(),
+                'totla_comment'   =>$news->comment_news->where('news_id', $news->id)->count(),
             ];
             $news_responses[] = $news_response;
         }
@@ -193,4 +208,29 @@ class NewsController extends Controller
     }
 
 
+    public function show_blogs(){
+        $newsItems = News::with('contentnews' ,'view_news' ,'share_news' , 'comment_news', 'like_news')
+                 ->whereHas('category', function ($query) {
+                     $query->where('section', 'blogs');
+                 })->get();
+        $news_responses = [];
+        foreach ($newsItems as $news) {
+            $news_response=[
+                'author_name'    =>$news->author->author_name,
+                'category_name'  =>$news->category->name,
+                'title'          =>$news->title,
+                'image'          =>$news->image,
+                'overview'       =>$news->overview,
+                'reading_time'   =>$news->reading_time,
+                'publicate_date' =>$news->publicate_date,
+                'contents'       =>$news->contentnews,
+                'totla_like'   =>$news->like_news->where('news_id', $news->id)->count(),
+                'totla_view'   =>$news->view_news->where('news_id', $news->id)->count(),
+                'totla_share'   =>$news->share_news->where('news_id', $news->id)->count(),
+                'totla_comment'   =>$news->comment_news->where('news_id', $news->id)->count(),
+            ];
+            $news_responses[] = $news_response;
+        }
+        return response( $news_responses);
+    }
 }

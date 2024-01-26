@@ -62,6 +62,7 @@ Route::get('all_news',[NewsController::class, 'index_api']);
 Route::get('today_news',[NewsController::class, 'show_today_news']);
 Route::get('post',[NewsController::class, 'show_post']);
 Route::get('Main_news',[NewsController::class, 'show_Main_news']);
+Route::get('blogs',[NewsController::class, 'show_blogs']);
 
 
 /**reaction api */
