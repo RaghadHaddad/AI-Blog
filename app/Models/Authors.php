@@ -21,4 +21,9 @@ class Authors extends Model
     {
         return $this->hasMany(Resource::class);
     }
+
+    public function podcasts()
+    {
+        return $this->hasMany(Podcast::class);
+    }
 }
