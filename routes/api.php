@@ -10,6 +10,7 @@ use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\HomeController;
 use App\Http\Controllers\API\PdfController;
+use App\Http\Controllers\PodcastController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,53 +27,65 @@ use App\Http\Controllers\API\PdfController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // });
-    //crud for resource
-    //All Resources
-    Route::get('/all/resources',[ResourceController::class,'index']);
-    //Add resource
-    Route::post('/Add/resource',[ResourceController::class,'store']);
-    //update
-    Route::post('/update/resource/{id}' , [ResourceController::class , 'update']);
-    //show resource
-    Route::get('/show/resource/{id}' ,[ResourceController::class , 'show']);
-    //delete resource
-    Route::post('/delete/resource/{id}', [ResourceController::class, 'destroy']);
+//crud for resource
+//All Resources
+Route::get('/all/resources', [ResourceController::class, 'index']);
+//Add resource
+Route::post('/Add/resource', [ResourceController::class, 'store']);
+//update
+Route::post('/update/resource/{id}', [ResourceController::class, 'update']);
+//show resource
+Route::get('/show/resource/{id}', [ResourceController::class, 'show']);
+//delete resource
+Route::post('/delete/resource/{id}', [ResourceController::class, 'destroy']);
 
-    //crud for resource Detail
-    //All Resource Details
-    Route::get('/all/resourceDetails',[ResourceDetailController::class,'index']);
-    //Add resource Detail
-    Route::post('/Add/resourceDetail',[ResourceDetailController::class,'store']);
-    //update
-    Route::post('/update/resourceDetail/{id}' , [ResourceDetailController::class , 'update']);
-    //show resource Detail
-    Route::get('/show/resourceDetail/{id}' ,[ResourceDetailController::class , 'show']);
-    //delete resource Detail
-    Route::post('/delete/resourceDetail/{id}', [ResourceDetailController::class, 'destroy']);
-    //information in resource page
-    Route::get('/Counting',[ResourceController::class,'counting']);
-    //Route for filtering
-    Route::get('/filter/{section}',[ResourceController::class,'filter']);
-    //Route for card display
-    Route::get('/CardData',[ResourceController::class,'CardData']);
-    //download pdf
-    Route::get('/download',[PdfController::class,'viewPdf']);
-    //display resource for home page
-    Route::get('/display',[HomeController::class,'index']);
+//crud for resource Detail
+//All Resource Details
+Route::get('/all/resourceDetails', [ResourceDetailController::class, 'index']);
+//Add resource Detail
+Route::post('/Add/resourceDetail', [ResourceDetailController::class, 'store']);
+//update
+Route::post('/update/resourceDetail/{id}', [ResourceDetailController::class, 'update']);
+//show resource Detail
+Route::get('/show/resourceDetail/{id}', [ResourceDetailController::class, 'show']);
+//delete resource Detail
+Route::post('/delete/resourceDetail/{id}', [ResourceDetailController::class, 'destroy']);
+//information in resource page
+Route::get('/Counting', [ResourceController::class, 'counting']);
+//Route for filtering
+Route::get('/filter/{section}', [ResourceController::class, 'filter']);
+//Route for card display
+Route::get('/CardData', [ResourceController::class, 'CardData']);
+//download pdf
+Route::get('/download', [PdfController::class, 'viewPdf']);
+//display resource for home page
+Route::get('/display', [HomeController::class, 'index']);
 
 /**contact Api */
-Route::post('Contact', [ContactsController::class ,'store']);
+Route::post('Contact', [ContactsController::class, 'store']);
 
 /**Answer Api */
-Route::get('Answer',[AnswerController::class,'index_id']);
+Route::get('Answer', [AnswerController::class, 'index_id']);
 
 /**opinon Api */
-Route::get('Opinion',[OpinionController::class, 'index_api']);
+Route::get('Opinion', [OpinionController::class, 'index_api']);
 
 /**category Api */
-Route::get('Category',[CategoryController::class, 'index_api']);
-Route::get('Category/news',[CategoryController::class, 'show_Category_news']);
-Route::get('Category/home',[CategoryController::class, 'show_Category_home']);
-Route::get('Category/blog',[CategoryController::class, 'show_Category_blog']);
-Route::get('Category/resource',[CategoryController::class, 'show_Category_resource']);
-Route::get('Category/podcast',[CategoryController::class, 'show_Category_podcast']);
+Route::get('Category', [CategoryController::class, 'index_api']);
+Route::get('Category/news', [CategoryController::class, 'show_Category_news']);
+Route::get('Category/home', [CategoryController::class, 'show_Category_home']);
+Route::get('Category/blog', [CategoryController::class, 'show_Category_blog']);
+Route::get('Category/resource', [CategoryController::class, 'show_Category_resource']);
+Route::get('Category/podcast', [CategoryController::class, 'show_Category_podcast']);
+
+
+/** Podcast **/
+
+Route::get('podcast_index', [PodcastController::class, 'podcast_index']);
+Route::get('podcast/podcastDetails/{id}', [PodcastController::class, 'podcast_podcastDetails']);
+Route::post('create/podcast/{id}', [PodcastController::class, 'create_podcast']);
+Route::post('create/podcastDetailes/{id}', [PodcastController::class, 'create_podcastDetailes']);
+Route::put('update/podcast/{id}', [PodcastController::class, 'update_podcast']);
+Route::put('update/podcastDetailes/{id}', [PodcastController::class, 'update_podcastDetails']);
+Route::delete('delete/podcast/{id}', [PodcastController::class, 'delete_podcast']);
+Route::delete('delete/podcastDetailes/{id}', [PodcastController::class, 'delete_podcastDetailes']);
