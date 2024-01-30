@@ -26,4 +26,9 @@ class Authors extends Model
     {
         return $this->hasMany(Podcast::class);
     }
+
+    public function viewers()
+    {
+        return $this->hasMany(Viewer::class);
+    }
 }

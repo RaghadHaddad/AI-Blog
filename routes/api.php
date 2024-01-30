@@ -11,6 +11,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\HomeController;
 use App\Http\Controllers\API\PdfController;
 use App\Http\Controllers\PodcastController;
+use App\Http\Controllers\PodcastVideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,12 @@ Route::put('update/podcast/{id}', [PodcastController::class, 'update_podcast']);
 Route::put('update/podcastDetailes/{id}', [PodcastController::class, 'update_podcastDetails']);
 Route::delete('delete/podcast/{id}', [PodcastController::class, 'delete_podcast']);
 Route::delete('delete/podcastDetailes/{id}', [PodcastController::class, 'delete_podcastDetailes']);
+
+
+/** Podcast Video**/
+
+Route::get('/podcast-videos', [PodcastVideoController::class, 'index']);
+Route::post('/create-podcast-video/{id}', [PodcastVideoController::class, 'store']);
+Route::get('/show-podcast-video/{id}', [PodcastVideoController::class, 'show']);
+Route::post('/update-podcast-video/{id}', [PodcastVideoController::class, 'update']);
+Route::delete('/delete-podcast-videos/{id}', [PodcastVideoController::class, 'destroy']);
