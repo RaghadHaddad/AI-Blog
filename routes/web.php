@@ -7,6 +7,11 @@ use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\AdminsController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsContentController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +46,10 @@ Route::resource('answer',AnswerController::class);
 Route::resource('Opinion', OpinionController::class);
 Route::resource('Admin', AdminsController::class);
 /**end contact_PAGE Route */
+
+
+/**start news Route */
+Route::resource('news', NewsController::class);
+Route::resource('news_content', NewsContentController::class);
+
+/**end news Route */
