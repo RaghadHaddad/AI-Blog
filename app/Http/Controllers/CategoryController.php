@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -46,7 +45,6 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
             'section' => $request->section,
-
         ]);
         session()->flash('Add', 'add category successfully');
         return redirect('/category');
@@ -88,7 +86,7 @@ class CategoryController extends Controller
         $Categories=Category::find($id);
 
         $request->validate([
-            'name'    => 'required',
+            'name'      => 'required',
             'section'   => 'required'
         ]);
 
@@ -132,7 +130,7 @@ class CategoryController extends Controller
 
     public function show_Category_resource(){
         $Categories=Category::where('section', 'resource')->get();
-        return response( $Categories ,);
+        return response( $Categories);
     }
 
 

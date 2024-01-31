@@ -13,18 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('podcasts', function (Blueprint $table) {
+        Schema::create('shares', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('author_id');
-            $table->foreign('author_id')->references('id')->on('authors');
-            $table->text('title');
-            $table->enum('rate', ['0', '1', '2', '3', '4', '5'])->default('0');
+            $table->unsignedBigInteger('news_id');
+            $table->foreign('news_id')->references('id')->on('news')->onDelete("cascade");
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -34,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('podcast');
+        Schema::dropIfExists('shares');
     }
 };
