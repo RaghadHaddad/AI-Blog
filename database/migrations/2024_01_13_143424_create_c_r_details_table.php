@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('image');
             $table->unsignedBigInteger('total_number');
             $table->text('average_author_expertise');
-            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

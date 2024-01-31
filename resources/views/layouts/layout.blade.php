@@ -127,21 +127,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url('/' . $page='') }}" class="nav-link">
+                    <a href="{{ url('/' . $page='news') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>  All news</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/' . $page='') }}" class="nav-link">
+                    <a href="{{ url('/' . $page='news_content') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p> news_content</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('/' . $page='') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p> news_details</p>
                     </a>
                 </li>
                 </ul>
@@ -190,22 +184,7 @@
                 </li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                <p>
-                    posts
-                    <i class="fas fa-angle-left right"></i>
-                </p>
-                </a>
-                <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{ url('/' . $page='') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>1 </p>
-                    </a>
-                </li>
-                </ul>
-            </li>
+           
         </li>
 
 

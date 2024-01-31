@@ -12,10 +12,6 @@ class Category extends Model
         'name',
         'section'
     ];
-    public function resources()
-    {
-        return $this->hasMany(Resource::class);
-    }
 }
 
 

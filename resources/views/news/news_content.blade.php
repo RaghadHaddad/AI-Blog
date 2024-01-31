@@ -1,9 +1,9 @@
 @extends('layouts.layout');
 @section('section1')
- Author
+news
 @endsection
 @section('section2')
-all_author
+content news
 @endsection
 
 @section('content')
@@ -29,11 +29,11 @@ all_author
                             <div class="row">
                                 <div class="col-lg-12 margin-tb">
                                     <div class="pull-left">
-                                        <h2>Author</h2>
+                                        <h2>news_content</h2>
                                     </div>
                                     <div class="card-header pb-0">
                                         <div class="d-flex justify-content-between">
-                                            <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal" href="#modaldemo8"> Add Author</a>
+                                            <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal" href="#modaldemo8"> Add details </a>
                                         </div>
                                     </div>
                                 </div>
@@ -48,20 +48,28 @@ all_author
                     <thead>
                     <tr>
                         <th>Number</th>
-                        <th>Name</th>
-                        <th>country</th>
-                        <th>Action</th>
+                        <th>title_news</th>
+                        <th>author_name</th>
+                        <th>category name</th>
+                        <th>publicate_date</th>
+                        <th>title</th>
+                        <th>description</th>
+                        <th>action</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Author as $Authors )
+                        @foreach ($contents as $content )
                         <tr>
                             <td>{{$loop->index +1}}</td>
-                            <td>{{$Authors->author_name}}</td>
-                            <td>{{$Authors->country}}</td>
+                            <td>{{$content->news->title}}</td>
+                            <td>{{$content->news->author->author_name}}</td>
+                            <td>{{$content->news->category->name}}</td>
+                            <td>{{$content->news->publicate_date}}</td>
+                            <td>{{$content->title}}</td>
+                            <td>{{$content->description}}</td>
                             <td>
-                                <form action="{{ route('Author.destroy',$Authors->id) }}" method="Post">
-                                    <a class="btn btn-primary" href="{{route('Author.edit',$Authors->id)}}">edit</a>
+                                <form action="{{ route('news_content.destroy',$content->id) }}" method="Post">
+                                     <a class="btn btn-primary" href="{{route('news_content.edit',$content->id)}}">edit</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">delete</button>
@@ -78,25 +86,29 @@ all_author
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content modal-content-demo">
                                                 <div class="modal-header">
-                                                    <h6 class="modal-title"> new author  </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                                    <h6 class="modal-title"> new Category  </h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{route('Author.store')}}"  enctype="multipart/form-data" >
+                                                    <form action="{{route('news_content.store')}}" method="post">
                                                         @csrf
                                                         <div class="form_group">
-                                                            <label for=""> author_name</label>
-                                                            <input type="text" class="form-control" id="author_name" name="author_name" required>
+                                                            <label for=""> title</label>
+                                                            <input type="text" class="form-control" id="title" name="title" required>
                                                         </div>
                                                         <div class="form_group">
-                                                            <label for="">author_image </label>
-                                                            <input type="file" name="author_image">
+                                                            <label for=""> description</label>
+                                                            <input type="text" class="form-control" id="description" name="description" required>
                                                         </div>
                                                         <div class="form_group">
-                                                            <label for="">country </label>
-                                                            <textarea class="form-control" name="country" id="country"  rows="3">
-                                                            </textarea>
+                                                            <label for=""> title_news</label>
+                                                            <select  class="form-control" name="news_id" id="news_id">
+                                                                @foreach ($new as $news )
+                                                                <option value="{{$news->id}}">
+                                                                    {{$news->title}}
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
-
                                                         <div class="modal-footer">
                                                             <button class="btn  btn-primary" type="submit">ok </button>
                                                             <button class="btn  btn-secondary" data-dismiss="modal" type="button">close</button>

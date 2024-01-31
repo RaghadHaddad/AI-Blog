@@ -33,11 +33,11 @@ edit
                                                 <div class="form_group">
                                                     <label for="">section </label>
                                                         <select name="section" id="section">
-                                                                <option value="home">home</option>
-                                                                <option value="home">news</option>
-                                                                <option value="home">resource</option>
-                                                                <option value="home">blogs</option>
-                                                                <option value="home">podcasts</option>
+                                                        <option value="home">home</option>
+                                                                <option value="news">news</option>
+                                                                <option value="resource">resource</option>
+                                                                <option value="blogs">blogs</option>
+                                                                <option value="podcasts">podcasts</option>
                                                         </select>
                                                 </div>
 
