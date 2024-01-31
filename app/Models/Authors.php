@@ -14,4 +14,18 @@ class Authors extends Model
         'country',
         'permission'
     ];
+    public function resources()
+    {
+        return $this->hasMany(Resource::class);
+    }
+
+    public function podcasts()
+    {
+        return $this->hasMany(Podcast::class);
+    }
+
+    public function viewers()
+    {
+        return $this->hasMany(Viewer::class);
+    }
 }

@@ -5,6 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\OpinionController;
+
+use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\HomeController;
+use App\Http\Controllers\API\PdfController;
+use App\Http\Controllers\PodcastController;
+use App\Http\Controllers\PodcastVideoController;
+
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
@@ -13,7 +20,6 @@ use App\Http\Controllers\LikesController;
 use App\Http\Controllers\ShareController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ViewController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +53,34 @@ Route::get('admin',[AdminsController::class, 'index_api']);
 Route::get('Opinion',[OpinionController::class, 'index_api']);
 
 /**category Api */
+Route::get('Category', [CategoryController::class, 'index_api']);
+Route::get('Category/news', [CategoryController::class, 'show_Category_news']);
+Route::get('Category/home', [CategoryController::class, 'show_Category_home']);
+Route::get('Category/blog', [CategoryController::class, 'show_Category_blog']);
+Route::get('Category/resource', [CategoryController::class, 'show_Category_resource']);
+Route::get('Category/podcast', [CategoryController::class, 'show_Category_podcast']);
+
+
+/** Podcast **/
+
+Route::get('podcast_index', [PodcastController::class, 'podcast_index']);
+Route::get('podcast/podcastDetails/{id}', [PodcastController::class, 'podcast_podcastDetails']);
+Route::post('create/podcast/{id}', [PodcastController::class, 'create_podcast']);
+Route::post('create/podcastDetailes/{id}', [PodcastController::class, 'create_podcastDetailes']);
+Route::put('update/podcast/{id}', [PodcastController::class, 'update_podcast']);
+Route::put('update/podcastDetailes/{id}', [PodcastController::class, 'update_podcastDetails']);
+Route::delete('delete/podcast/{id}', [PodcastController::class, 'delete_podcast']);
+Route::delete('delete/podcastDetailes/{id}', [PodcastController::class, 'delete_podcastDetailes']);
+
+
+/** Podcast Video**/
+
+Route::get('/podcast-videos', [PodcastVideoController::class, 'index']);
+Route::post('/create-podcast-video/{id}', [PodcastVideoController::class, 'store']);
+Route::get('/show-podcast-video/{id}', [PodcastVideoController::class, 'show']);
+Route::post('/update-podcast-video/{id}', [PodcastVideoController::class, 'update']);
+Route::delete('/delete-podcast-videos/{id}', [PodcastVideoController::class, 'destroy']);
+
 Route::get('Category',[CategoryController::class, 'index_api']);
 Route::get('Category/news',[CategoryController::class, 'show_Category_news']);
 Route::get('Category/home',[CategoryController::class, 'show_Category_home']);
