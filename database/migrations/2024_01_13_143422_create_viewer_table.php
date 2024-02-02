@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('author_id')->references('id')->on('authors')->onDelete("cascade");
             $table->text('title');
             $table->text('video');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

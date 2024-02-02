@@ -15,13 +15,12 @@ return new class extends Migration
 
         Schema::create('news_contents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('news_id');
-            $table->foreign('news_id')->references('id')->on('news')->onDelete("cascade");
             $table->text('title');
-            $table->longText('description');
+            $table->unsignedBigInteger('news_id');
+            $table->foreign('news_id')->references('id')->on('news_details')->onDelete("cascade");
             $table->timestamps();
-
         });
+
 
         Schema::enableForeignKeyConstraints();
     }

@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('news_details', function (Blueprint $table) {
             $table->id();
-            $table->text('author_name');
-            $table->text('author_image');
-            $table->text('country');
-            $table->text('permission');
+            $table->unsignedBigInteger('news_id')->index();
+            $table->foreign('news_id')->references('id')->on('news')->onDelete("cascade");
+            $table->longText('description_intro');
+            $table->date('publicate_date');
+            $table->text('image');
+            $table->integer('reading_time');
             $table->timestamps();
-
         });
 
         Schema::enableForeignKeyConstraints();
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('author');
+        Schema::dropIfExists('new_details');
     }
 };

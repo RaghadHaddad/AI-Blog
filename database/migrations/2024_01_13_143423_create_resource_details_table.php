@@ -19,8 +19,12 @@ return new class extends Migration
             $table->foreign('resource_id')->references('id')->on('resources')->onDelete("cascade");
             $table->longText('job');
             $table->text('image');
-            $table->date('publicate_date');
+            $table->string('publication_date');
             $table->bigInteger('total_download');
+            $table->text('download_formate');
+            $table->string('total_number');
+            $table->string('average_author_expertise');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
