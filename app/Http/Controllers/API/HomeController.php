@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiResponseTrait;
-use App\Models\Resource;
+use App\Models\{Resource,ResourceDetail,Authors,contacts};
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     use ApiResponseTrait;
+    public function countingHome()
+    {
+        $resource=Resource::count();
+        $total_downloads = ResourceDetail::sum('total_download');
+        $sum=Authors::count()+contacts::count();
+        return $this->customResponse([$resource,$total_downloads,$sum],'ok',200);
+    }
     public function index()
     {
         $informations = Resource::with(['resourceDetail', 'category','author'])

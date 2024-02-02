@@ -59,6 +59,8 @@ use App\Http\Controllers\API\PdfController;
     Route::get('/download',[PdfController::class,'viewPdf']);
     //display resource for home page
     Route::get('/display',[HomeController::class,'index']);
+    //counting
+    Route::get('/home/counting',[HomeController::class,'countingHome']);
 
 /**contact Api */
 Route::post('Contact', [ContactsController::class ,'store']);
